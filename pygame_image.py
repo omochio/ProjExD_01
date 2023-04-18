@@ -11,13 +11,19 @@ def main():
     kokaton_img_list = [fliped_kokaton_img, pg.transform.rotate(fliped_kokaton_img, 10)]
 
     tmr = 0
+    x = 0
 
     while True:
         for event in pg.event.get():
             if event.type == pg.QUIT: return
 
         tmr += 1
-        screen.blit(bg_img, [0, 0])
+        screen.blit(bg_img, [-x, 0])
+        screen.blit(bg_img, [1600 - x, 0])
+        if (x > 1600):
+            x = 0
+        else:
+            x += 1
         screen.blit(kokaton_img_list[tmr % 2], [300, 200])
         pg.display.update()
         clock.tick(100)
