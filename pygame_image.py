@@ -19,8 +19,6 @@ def main():
 
     # 経過時間
     tmr = 0
-    # 背景減算値
-    x = 0
     # こうかとんリストインデックス
     kokaton_idx = 0
 
@@ -30,13 +28,15 @@ def main():
 
         current_frame = tmr % framerate + 1
         tmr += 1
-
-        screen.blit(bg_img, [-x, 0])
-        screen.blit(bg_img, [1600 - x, 0])
-        if (x > 1600):
-            x = 0
+        x = tmr % 1600
+        fliped_bg_img = pg.transform.flip(bg_img, True, False)
+        if (tmr % (1600 * 2) < 1600):
+            screen.blit(bg_img, [-x, 0])
+            screen.blit(fliped_bg_img, [1600 - x, 0])
         else:
-            x += 1
+            screen.blit(fliped_bg_img, [-x, 0])
+            screen.blit(bg_img, [1600 - x, 0])
+            
         screen.blit(kokaton_img_list[kokaton_idx], [300, 200])
 
         if (current_frame % transition_frame_count == 0):
