@@ -8,6 +8,7 @@ def main():
     bg_img = pg.image.load("ex01/fig/pg_bg.jpg")
     kokaton_img = pg.image.load("ex01/fig/3.png")
     fliped_kokaton_img = pg.transform.flip(kokaton_img, True, False)
+    kokaton_img_list = [fliped_kokaton_img, pg.transform.rotate(fliped_kokaton_img, 10)]
 
     tmr = 0
 
